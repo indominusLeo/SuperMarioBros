@@ -23,7 +23,8 @@ GameObject:
   - component: {fileID: 50013949022106882}
   - component: {fileID: 61288491697065714}
   - component: {fileID: 95040383330870732}
-  m_Layer: 0
+  - component: {fileID: 114304292731028874}
+  m_Layer: 9
   m_Name: Goomba
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1944103708693808}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.58, y: -2.05, z: 0}
+  m_LocalPosition: {x: 0.59, y: -1.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -105,6 +106,26 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114304292731028874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1944103708693808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff6c741af76fed4695f31d8396c3ca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 2, y: 0}
+  gravity: 60
+  isWalkingLeft: 1
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 257
+  floorMask:
+    serializedVersion: 2
+    m_Bits: 257
 --- !u!212 &212712549094008354
 SpriteRenderer:
   m_ObjectHideFlags: 1

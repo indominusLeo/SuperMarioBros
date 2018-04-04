@@ -37,10 +37,10 @@ public class CameraFollow : MonoBehaviour {
 
             float x = Mathf.SmoothDamp(transform.position.x, targetX, ref smoothDampVelocity, smoothDampTime);
 
-            if (transform.position.x < x)
-            {
+            //if (transform.position.x < x)
+            //{
                 transform.position = new Vector3(x, transform.position.y, transform.position.z);
-            } //(Camera not returning. It works)
+            //} //(Camera not returning. It works)
         }
 	}
 }

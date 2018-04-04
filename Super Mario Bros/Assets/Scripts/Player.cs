@@ -34,12 +34,12 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Fall();
+
+        size = GetComponent<Renderer>().bounds.size;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-        size = GetComponent<Renderer>().bounds.size;
 
         CheckPlayerInput();
 
@@ -165,9 +165,9 @@ public class Player : MonoBehaviour {
 
     Vector3 CheckWallRays (Vector3 pos, float direction)
     {
-        Vector2 originTop = new Vector2(pos.x + direction * 0.4f, pos.y + 0.4f);   //Add for big mario
-        Vector2 originMid = new Vector2(pos.x + direction * 0.4f, pos.y);   //Add for big mario
-        Vector2 originBot = new Vector2(pos.x + direction * 0.4f, pos.y - 0.4f);   //Add for big mario
+        Vector2 originTop = new Vector2(pos.x + direction * 0.4f, pos.y + 0.4f);
+        Vector2 originMid = new Vector2(pos.x + direction * 0.4f, pos.y);  
+        Vector2 originBot = new Vector2(pos.x + direction * 0.4f, pos.y - 0.4f);  
 
         RaycastHit2D wallTop = Physics2D.Raycast(originTop, new Vector2(direction, 0), velocity.x * Time.deltaTime, wallMask);
         RaycastHit2D wallMid = Physics2D.Raycast(originMid, new Vector2(direction, 0), velocity.x * Time.deltaTime, wallMask);
@@ -183,9 +183,9 @@ public class Player : MonoBehaviour {
 
     Vector3 CheckFloorRays(Vector3 pos)
     {
-        Vector2 originLeft = new Vector2(pos.x - size.x/2, pos.y - size.y/2);   //Add for big mario
+        Vector2 originLeft = new Vector2(pos.x - size.x/2 - 0.1f, pos.y - size.y/2);   //Add for big mario
         Vector2 originMid = new Vector2(pos.x, pos.y - size.y/2);   //Add for big mario
-        Vector2 originRight = new Vector2(pos.x + size.x/2, pos.y - size.y/2);   //Add for big mario
+        Vector2 originRight = new Vector2(pos.x + size.x/2 + 0.1f, pos.y - size.y/2);   //Add for big mario
 
         RaycastHit2D floorLeft = Physics2D.Raycast(originLeft, Vector2.down, velocity.y * Time.deltaTime, floorMask);
         RaycastHit2D floorMid = Physics2D.Raycast(originMid, Vector2.down, velocity.y * Time.deltaTime, floorMask);
@@ -257,6 +257,11 @@ public class Player : MonoBehaviour {
             else if (ceilRight)
             {
                 hitRay = ceilRight;
+            }
+
+            if(hitRay.collider.tag == "QuestionBlock")
+            {
+                hitRay.collider.GetComponent<QuestionBlock>().QuestionBlockBounce();
             }
 
             pos.y = hitRay.collider.bounds.center.y - hitRay.collider.bounds.size.y/2 - size.y/2; //Add for big mario
